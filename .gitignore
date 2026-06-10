@@ -1,0 +1,59 @@
+# Compiled class files
+*.class
+
+# Log files
+*.log
+logs/
+
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Spring Boot
+application-local.properties
+application-local.yml
+application-local.yaml
+
+# Java
+hs_err_pid*
+replay_pid*
+
+# Temporary files
+tmp/
+temp/
+*.swp
+*.swo
+*~
+
+# Test reports
+surefire-reports/
+failsafe-reports/
+
+# Coverage
+coverage/
+jacoco.exec
+
+# Generated files
+generated/
