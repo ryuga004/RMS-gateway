@@ -33,6 +33,7 @@ Thumbs.db
 
 # Spring Boot
 application-local.properties
+application-prod.properties
 application-local.yml
 application-local.yaml
 

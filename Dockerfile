@@ -11,15 +11,13 @@ RUN mvn clean package -DskipTests
 # -------- RUNTIME STAGE --------
 FROM eclipse-temurin:17-jre-alpine
 
-# Create non-root user
 RUN addgroup -S spring && adduser -S spring -G spring
 
 WORKDIR /app
 
-# Copy jar (avoid wildcard if possible for caching)
 COPY --from=build /build/target/*.jar app.jar
 
-# JVM tuning for low memory containers
+# JVM tuning for Render's low-memory containers (512MB–1GB free tier)
 ENV JAVA_TOOL_OPTIONS="\
 -XX:+UseContainerSupport \
 -XX:+UseSerialGC \
@@ -28,8 +26,10 @@ ENV JAVA_TOOL_OPTIONS="\
 -XX:MaxMetaspaceSize=128m \
 -XX:+ExitOnOutOfMemoryError"
 
-EXPOSE 8080
+# Render injects $PORT at runtime — shell form expands it
+# All other config (Postgres, Redis, JWT secret, Eureka, etc.) comes from Render env vars
+EXPOSE 8082
 
 USER spring
 
-ENTRYPOINT ["java","-jar","/app/app.jar"]
+CMD ["sh", "-c", "java $JAVA_TOOL_OPTIONS -jar /app/app.jar --server.port=${PORT:-8082} --spring.profiles.active=prod"]
