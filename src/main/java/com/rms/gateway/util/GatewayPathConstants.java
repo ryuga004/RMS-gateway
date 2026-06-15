@@ -15,13 +15,17 @@ public final class GatewayPathConstants {
         public static final List<String> PUBLIC_PATH_PREFIXES = List.of(
                         "/auth/",
                         "/api/admin/register",
-                        "/actuator");
+                        "/actuator",
+                        "/api/reporting/actuator",
+                        "/api/notification/actuator");
 
         /** Ant-style patterns for SecurityConfig requestMatchers (permitAll). */
         public static final List<String> PERMIT_ALL_ANT_PATTERNS = List.of(
                         "/auth/**",
                         "/api/admin/register/**",
                         "/actuator/**",
+                        "/api/reporting/actuator/**",
+                        "/api/notification/actuator/**",
                         "/error/**");
 
         private GatewayPathConstants() {
